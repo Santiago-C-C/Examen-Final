@@ -23,11 +23,11 @@ def user_input_features():
 df = user_input_features()
 
 # === Cargar datos ===
-datos = pd.read_csv('Temperatura.csv', encoding='latin-1')
+M = pd.read_csv('Temperatura.csv', encoding='latin-1')
 
 # Variables independientes y dependientes
 X = M[["Year", "Month", "City"]]
-y = M['AverageTemperature']  
+y = M['AverageTemperature']
 
 # === Entrenar modelo ===
 from sklearn.model_selection import train_test_split
@@ -38,7 +38,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 LR = LinearRegression()
 LR.fit(X_train, y_train)
 
-b = LR.coef_    
+b = LR.coef_
 b0 = LR.intercept_
 
 prediccion = b0 + b[0]*df['Year'] + b[1]*df['City'] + b[2]*df['Month']
